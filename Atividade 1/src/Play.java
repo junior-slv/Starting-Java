@@ -1,101 +1,52 @@
-import java.util.Random;
 import java.util.Scanner;
-
-public class RandomNumber {
-
+public class Play {
     public static void main(String[] args) {
-        int valor, aleatorio, escolha, i;
+        int tries = 1;
+        int maxTries = 0;
+        int randomNum = 0;
         Scanner sc = new Scanner(System.in);
-        Random random = new Random();
-
-        System.out.println("Escolha entre os níveis: 1(Fácil), 2(Médio) e 3(Difícil)");
-        escolha = sc.nextInt();
-
-        switch (escolha) {
-
-            case 1:
-                aleatorio = random.nextInt(1001);
-                for (i = 1; i <= 15; i++){
-                System.out.println("Digite um número de 0 a 1000");
-                valor = sc.nextInt();
-
-                    if (valor == aleatorio) {
-
-                        System.out.println("Parabéns, você acertou!!!");
-
-                    } else {
-
-                        System.out.println("Você errou!");
-                    }
-                    if (valor < aleatorio) {
-
-                        System.out.println("Seu chute foi baixo, tente novamente.");
-
-                    } else {
-                        System.out.println("Seu chute foi alto, tente novamente.");
-                    }
-                }
-                System.out.println("Suas tentativas esgotaram :(");
-                System.out.println("O número sorteado era: " + aleatorio);
-                break;
-
-            case 2:
-                aleatorio = random.nextInt(5001);
-                for (i = 1; i <= 12; i++){
-                    System.out.println("Digite um número de 0 a 5000");
-                    valor = sc.nextInt();
-
-                    if (valor == aleatorio) {
-
-                        System.out.println("Parabéns, você acertou!!!");
-
-                    } else {
-
-                        System.out.println("Você errou!");
-                    }
-                    if (valor < aleatorio) {
-
-                        System.out.println("Seu chute foi baixo, tente novamente.");
-
-                    } else {
-                        System.out.println("Seu chute foi alto, tente novamente.");
-                    }
-                }
-                System.out.println("Suas tentativas esgotaram :(");
-                System.out.println("O número sorteado era: " + aleatorio);
-                break;
-
-            case 3:
-                aleatorio = random.nextInt(10001);
-                for (i = 1; i <= 10; i++){
-                    System.out.println("Digite um número de 0 a 10000");
-                    valor = sc.nextInt();
-
-                    if (valor == aleatorio) {
-
-                        System.out.println("Parabéns, você acertou!!!");
-
-                    } else {
-
-                        System.out.println("Você errou!");
-
-                        if (valor < aleatorio) {
-
-                            System.out.println("Seu chute foi baixo, tente novamente.");
-
-                        } else {
-                            System.out.println("Seu chute foi alto, tente novamente.");
-                        }
-                    }
-                }
-                System.out.println("Suas tentativas esgotaram :(");
-                System.out.println("O número sorteado era: " + aleatorio);
-                break;
-            default:
-                System.out.println("Escolha um nível válido");
+        boolean loop = true;
+        while (loop) {
+            System.out.println("Insert difficult:\nEasy: 1-1.000\nMedium: 1-5.000\nHard 1-10.000 ");
+            String difficultSet = sc.nextLine();
+            if (difficultSet.equalsIgnoreCase("EASY")) {
+                randomNum = (int) (Math.random() * 1001);
+                maxTries = 16;
+                loop = false;
+            } else if (difficultSet.equalsIgnoreCase("MEDIUM")) {
+                randomNum = (int) (Math.random() * 5001);
+                maxTries = 13;
+                loop = false;
+            } else if (difficultSet.equalsIgnoreCase("HARD")) {
+                randomNum = (int) (Math.random() * 10001);
+                maxTries = 11;
+                loop = false;
+            } else {
+                System.out.println("Insert a valid difficult (Easy, Medium or Hard)!");
+            }
         }
-
-        sc.close();
-
+        boolean Congratulations = false;
+        int guess;
+        while(tries < maxTries ){
+            System.out.println("Insert your guess: ");
+            guess = sc.nextInt();
+            if (guess == randomNum){
+                System.out.println("Congratulations, the correct number as: "+randomNum);
+                Congratulations= true;
+                break;
+            }
+            else if (guess < randomNum){
+                System.out.println("Insert a upper value, attempt: "+tries);
+            }
+            else if (guess > randomNum){
+                System.out.println("Insert a lower value, attempt: "+tries);
+            }
+            tries++;
+        }
+        if(Congratulations){
+            System.out.println("Parabens :)");
+        }else{
+            System.out.println("Out of attempts, the correct number as: "+randomNum);
+        }
     }
 }
