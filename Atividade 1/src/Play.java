@@ -10,15 +10,15 @@ public class Play {
             System.out.println("Insert difficult:\nEasy: 1-1.000\nMedium: 1-5.000\nHard 1-10.000 ");
             String difficultSet = sc.nextLine();
             if (difficultSet.equalsIgnoreCase("EASY")) {
-                randomNum = (int) (Math.random() * 1001);
+                randomNum = 1 + (int) (Math.random() * 1000);
                 maxTries = 16;
                 loop = false;
             } else if (difficultSet.equalsIgnoreCase("MEDIUM")) {
-                randomNum = (int) (Math.random() * 5001);
+                randomNum = 1 + (int) (Math.random() * 5000);
                 maxTries = 13;
                 loop = false;
             } else if (difficultSet.equalsIgnoreCase("HARD")) {
-                randomNum = (int) (Math.random() * 10001);
+                randomNum = 1+ (int) (Math.random() * 10000);
                 maxTries = 11;
                 loop = false;
             } else {
